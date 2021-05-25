@@ -64,7 +64,7 @@ released. Do not integrate with pre-1.0.0 releases.
 To integrate the latest version of the LiftoffAds display SDK, you will need at
 minimum:
 
-- TBD ...
+- Android API >= 19
 
 ## Integrating the SDK
 
@@ -157,6 +157,7 @@ requirements of your app.
 import com.mopub.common.MoPub
 import com.mopub.common.SdkConfiguration
 import com.mopub.common.SdkInitializationListener
+import com.mopub.common.logging.MoPubLog
 import com.mopub.mobileads.LiftoffAdapterConfiguration
 
 class MainActivity : AppCompatActivity(), SdkInitializationListener {
@@ -167,6 +168,7 @@ class MainActivity : AppCompatActivity(), SdkInitializationListener {
 
     // BEGIN: Required for Liftoff custom SDK network.
     with(sdkConfig) {
+      withLogLevel(MoPubLog.LogLevel.DEBUG)
       withAdditionalNetwork(LiftoffAdapterConfiguration::class.java.name)
       withMediatedNetworkConfiguration(
         LiftoffAdapterConfiguration::class.java.name,
@@ -203,6 +205,9 @@ class Activity :
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    // Supported log levels: NONE, ERROR, INFO, DEBUG.
+    Liftoff.logLevel = Liftoff.LogLevel.DEBUG
 
     // Contact your Liftoff POC to retrieve your API key. Define this constant
     // elsewhere or replace with a hardcoded string.
@@ -349,7 +354,7 @@ category, you must not use the LiftoffAds SDK for the user's sessions.
 
 ## Troubleshooting
 
-Set the log level to `debug` before troubleshooting.
+Set the log level to `DEBUG` before troubleshooting.
 
 Common integration issues:
 
