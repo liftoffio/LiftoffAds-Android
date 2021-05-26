@@ -223,11 +223,11 @@ class Activity :
     // The size argument may be one of the following (a 0 indicates a flexible
     // dimension):
     // AdSize.PHONE_BANNER             // width: 320, height:  50
-    // AdSize.PHONE_BANNER_FLEX_WIDTH  // width: 320, height:   0
+    // AdSize.PHONE_BANNER_FLEX_WIDTH  // width:   0, height:  50
     // AdSize.TABLET_BANNER            // width: 728, height:  90
-    // AdSize.TABLET_BANNER_FLEX_WIDTH // width: 728, height:   0
+    // AdSize.TABLET_BANNER_FLEX_WIDTH // width:   0, height:  90
     // AdSize.MRECT                    // width: 300, height: 250
-    // AdSize.MRECT_FLEX_WIDTH         // width: 300, height:   0
+    // AdSize.MRECT_FLEX_WIDTH         // width:   0, height: 250
     // AdSize.FLEX_ALL                 // width:   0, height:   0
     this.loBanner = Liftoff.newBanner(
       this,
