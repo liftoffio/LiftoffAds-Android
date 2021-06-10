@@ -32,9 +32,6 @@ For any other questions, please email sdk@liftoff.io.
 
 ### Latest Releases
 
-**NOTE:** LiftoffAds SDK and MoPub Adapter SDK have not been officially
-released. Do not integrate with pre-1.0.0 releases.
-
 - [LiftoffAds SDK][latest-display-sdk]
 - Mediation Adapter SDKs
   - [Liftoff MoPub Adapter SDK][latest-mopub]
@@ -91,9 +88,9 @@ Add the `LiftoffAds` SDK as a dependency to your app module's `build.gradle`:
 ```
 dependencies {
   // Only if using MoPub mediation
-  implementation "io.liftoff:liftoffads-mopub:1.0.0"
+  implementation "io.liftoff:liftoffads-mopub:1.0.1"
   // Only if using custom mediation
-  implementation "io.liftoff:liftoffads:1.0.0"
+  implementation "io.liftoff:liftoffads:1.0.1"
 }
 ```
 
@@ -392,5 +389,5 @@ Reporting is available via programmatic API or scheduled emails.
   * Revenue
   * eCPM
 
-[latest-display-sdk]: https://github.com/liftoffio/LiftoffAds-Android/releases/download/v1.0.0/LiftoffAds-v1.0.0.zip
-[latest-mopub]: https://github.com/liftoffio/LiftoffAds-Android/releases/download/mopub-v1.0.0/LiftoffMoPubAdapter-v1.0.0.zip
+[latest-display-sdk]: https://github.com/liftoffio/LiftoffAds-Android/releases/download/v1.0.1/LiftoffAds-v1.0.1.zip
+[latest-mopub]: https://github.com/liftoffio/LiftoffAds-Android/releases/download/mopub-v1.0.1/LiftoffMoPubAdapter-v1.0.1.zip
