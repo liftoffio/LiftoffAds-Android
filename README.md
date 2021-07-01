@@ -90,7 +90,7 @@ dependencies {
   // Only if using MoPub mediation
   implementation "io.liftoff:liftoffads-mopub:1.0.1"
   // Only if using custom mediation
-  implementation "io.liftoff:liftoffads:1.0.1"
+  implementation "io.liftoff:liftoffads:1.1.0"
 }
 ```
 
@@ -389,5 +389,5 @@ Reporting is available via programmatic API or scheduled emails.
   * Revenue
   * eCPM
 
-[latest-display-sdk]: https://github.com/liftoffio/LiftoffAds-Android/releases/download/v1.0.1/LiftoffAds-v1.0.1.zip
+[latest-display-sdk]: https://github.com/liftoffio/LiftoffAds-Android/releases/download/v1.1.0/LiftoffAds-v1.1.0.zip
 [latest-mopub]: https://github.com/liftoffio/LiftoffAds-Android/releases/download/mopub-v1.0.1/LiftoffMoPubAdapter-v1.0.1.zip
