@@ -299,7 +299,7 @@ consent information to our SDK. The following code samples can be used as
 reference:
 
 ```kotlin
-LOPrivacySettings.setHasUserConsent(true)
+io.liftoff.liftoffads.privacy.PrivacySettings.hasUserConsent = true
 ```
 
 #### Test Ad Units
