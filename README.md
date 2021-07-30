@@ -211,6 +211,8 @@ class Activity :
     // elsewhere or replace with a hardcoded string.
     Liftoff.initializeSDK(LIFTOFF_API_KEY)
 
+    Log.d("TAG", "Initialized LiftoffAds SDK ${Liftoff.SDK_VERSION}")
+
     // Contact your Liftoff POC to retrieve your ad unit IDs.
     // NOTE: Liftoff interstitial and banner objects cannot be reused to request
     // multiple ads. You must initialize a new object for each ad request.
