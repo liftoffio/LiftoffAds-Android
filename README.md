@@ -181,7 +181,7 @@ class MainActivity : AppCompatActivity(), SdkInitializationListener {
 
     MoPub.initializeSdk(this, sdkConfig.build(), this)
   }
-  
+
   // Native Ads
   fun setUpNativeAds() {
     val moPubNative = MoPubNative(
@@ -236,8 +236,8 @@ class Activity :
     Log.d("TAG", "Initialized LiftoffAds SDK ${Liftoff.SDK_VERSION}")
 
     // Contact your Liftoff POC to retrieve your ad unit IDs.
-    // NOTE: Liftoff interstitial, banner, and native objects cannot be reused 
-    // to request multiple ads. You must initialize a new object for each ad 
+    // NOTE: Liftoff interstitial, banner, and native objects cannot be reused
+    // to request multiple ads. You must initialize a new object for each ad
     // request.
 
     this.loInterstitial = Liftoff.newInterstitial(this, LIFTOFF_INTERSTITIAL_AD_UNIT, this)
@@ -343,7 +343,7 @@ class Activity :
 
   // Called if loading the icon has failed.
   override fun onNativeIconFailed(native: LONative, error: String?) {}
-  
+
   // Called when the main image has been loaded successfully.
   override fun onNativeMainImageLoaded(native: LONative) {}
 
@@ -370,7 +370,7 @@ consent information to our SDK. The following code samples can be used as
 reference:
 
 ```kotlin
-io.liftoff.liftoffads.privacy.PrivacySettings.hasUserConsent = true
+LOPrivacySettings.hasUserConsent = true
 ```
 
 #### Test Ad Units
