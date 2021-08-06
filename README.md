@@ -50,12 +50,14 @@ For any other questions, please email sdk@liftoff.io.
 - 320x50 (phone banner)
 - 728x90 (tablet banner)
 - 300x250 (medium rectangle)
+- 0x0 (native)
 
 ### Supported Ad Types
 
 - HTML and HTML video
 - VAST video
 - Rewarded
+- Native
 
 ## Development Requirements
 
@@ -179,6 +181,25 @@ class MainActivity : AppCompatActivity(), SdkInitializationListener {
 
     MoPub.initializeSdk(this, sdkConfig.build(), this)
   }
+  
+  // Native Ads
+  fun setUpNativeAds() {
+    val moPubNative = MoPubNative(
+      /* context= */ this, MOPUB_AD_UNIT_ID, nativeNetworkListener
+    )
+    moPubNative.registerAdRenderer(
+      MoPubStaticNativeAdRenderer(
+        ViewBinder.Builder(R.layout.native_ad)
+          .titleId(R.id.nativeAdTitle)
+          .textId(R.id.nativeAdDescription)
+          .callToActionId(R.id.nativeAdCTA)
+          .iconImageId(R.id.nativeAdIcon)
+          .mainImageId(R.id.nativeAdMainImage)
+          .build()
+      )
+    )
+    moPubNative.makeRequest()
+  }
 }
 ```
 
@@ -200,6 +221,7 @@ class Activity :
   LOBanner.LOBannerListener {
   lateinit var loInterstitial: LOInterstitial
   lateinit var loBanner: LOBanner
+  lateinit var loNative: LONative
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -214,8 +236,9 @@ class Activity :
     Log.d("TAG", "Initialized LiftoffAds SDK ${Liftoff.SDK_VERSION}")
 
     // Contact your Liftoff POC to retrieve your ad unit IDs.
-    // NOTE: Liftoff interstitial and banner objects cannot be reused to request
-    // multiple ads. You must initialize a new object for each ad request.
+    // NOTE: Liftoff interstitial, banner, and native objects cannot be reused 
+    // to request multiple ads. You must initialize a new object for each ad 
+    // request.
 
     this.loInterstitial = Liftoff.newInterstitial(this, LIFTOFF_INTERSTITIAL_AD_UNIT, this)
     this.loInterstitial.load()
@@ -236,6 +259,22 @@ class Activity :
       this
     )
     this.loBanner.load()
+
+    this.loNative = Liftoff.newNative(
+      activity = this,
+      LIFTOFF_NATIVE_AD_UNIT,
+      LONative.ViewBinder(
+        layout = R.layout.native_ad,
+        parent = nativePlaceholderView,
+        title = R.id.nativeAdTitle,
+        desc = R.id.nativeAdDescription,
+        callToAction = R.id.nativeAdCTA,
+        icon = R.id.nativeAdIcon,
+        mainImage = R.id.nativeAdMainImage
+      ),
+      listener = this
+    )
+    this.loNative.load()
   }
 
 
@@ -289,6 +328,36 @@ class Activity :
 
   // Called when the user will be directed to an external destination.
   override fun onBannerClicked(banner: LOBanner) {}
+
+  // LONative.LONativeListener implementation
+
+  // Called when the ad has been loaded successfully.
+  override fun onNativeLoaded(native: LONative) {}
+
+  // Called when the ad view has been inflated and the text views are set to
+  // the values from the loaded ad.
+  override fun onNativeReady(native: LONative, adView: View) {}
+
+  // Called when the icon has been loaded successfully.
+  override fun onNativeIconLoaded(native: LONative) {}
+
+  // Called if loading the icon has failed.
+  override fun onNativeIconFailed(native: LONative, error: String?) {}
+  
+  // Called when the main image has been loaded successfully.
+  override fun onNativeMainImageLoaded(native: LONative) {}
+
+  // Called if loading the main image has failed.
+  override fun onNativeMainImageFailed(native: LONative, error: String?) {}
+
+  // Called if loading has failed.
+  override fun onNativeFailed(native: LONative, error: String?) {}
+
+  // Called when the ad view is actually shown.
+  override fun onNativeImpression(native: LONative) {}
+
+  // Called when the CTA element is clicked.
+  override fun onNativeClicked(native: LONative) {}
 }
 ```
 
@@ -309,12 +378,13 @@ io.liftoff.liftoffads.privacy.PrivacySettings.hasUserConsent = true
 Use the following ad unit IDs to display a LiftoffAds test creative and verify
 successful integration.
 
-| Ad Unit ID                        | Size           | Type                       |
-| --------------------------------- | -------------- | -------------------------- |
-| `liftoff-banner-mrect-test`       | Banner / MRECT | VAST video, HTML video     |
-| `liftoff-interstitial-video-test` | Interstitial   | VAST video                 |
-| `liftoff-interstitial-html-test`  | Interstitial   | HTML video                 |
-| `liftoff-rewarded-video-test`     | Rewarded Interstitial | VAST video
+| Ad Unit ID                        | Size                  | Type                   |
+| --------------------------------- | --------------------- | ---------------------- |
+| `liftoff-banner-mrect-test`       | Banner / MRECT        | VAST video, HTML video |
+| `liftoff-interstitial-video-test` | Interstitial          | VAST video             |
+| `liftoff-interstitial-html-test`  | Interstitial          | HTML video             |
+| `liftoff-rewarded-video-test`     | Rewarded Interstitial | VAST video             |
+| `liftoff-native-test`             | Native                | Native                 |
 
 ### Creating a MoPub Custom SDK Network
 
@@ -329,7 +399,7 @@ Liftoff ad network.
    up ad units and retrieve your ad unit IDs.
 
 The screenshots below show example configurations for Liftoff banner/medium
-rectangle, standard interstitial, and rewarded interstitial line items.
+rectangle, standard interstitial, rewarded interstitial, and native line items.
 
 #### Banner / Medium Rectangle (MRECT)
 
@@ -356,6 +426,14 @@ Custom event class: `com.mopub.mobileads.LiftoffRewardedInterstitial`
 Custom event data: `{"adUnitID": "LIFTOFF_REWARDED_INTERSTITIAL_AD_UNIT_ID"}`
 
 ![](https://user-images.githubusercontent.com/573865/116912863-9fbd7000-abfd-11eb-826f-faa17392aeaa.png)
+
+#### Native
+
+Custom event class: `com.mopub.nativeads.LiftoffNative`
+
+Custom event data: `{"adUnitID": "LIFTOFF_NATIVE_AD_UNIT_ID"}`
+
+![](https://user-images.githubusercontent.com/11006152/128574243-2be1c5d4-613e-4885-a378-ad6c48cf2a1d.png)
 
 ## COPPA
 
