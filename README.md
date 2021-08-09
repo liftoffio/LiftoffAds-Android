@@ -481,5 +481,5 @@ Reporting is available via programmatic API or scheduled emails.
   * Revenue
   * eCPM
 
-[latest-display-sdk]: https://github.com/liftoffio/LiftoffAds-Android/releases/download/v1.1.1/LiftoffAds-v1.1.1.zip
-[latest-mopub]: https://github.com/liftoffio/LiftoffAds-Android/releases/download/mopub-v1.1.1/LiftoffMoPubAdapter-v1.1.1.zip
+[latest-display-sdk]: https://github.com/liftoffio/LiftoffAds-Android/releases/download/v1.2.0/LiftoffAds-v1.2.0.zip
+[latest-mopub]: https://github.com/liftoffio/LiftoffAds-Android/releases/download/mopub-v1.2.0/LiftoffMoPubAdapter-v1.2.0.zip
