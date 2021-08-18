@@ -90,9 +90,9 @@ Add the `LiftoffAds` SDK as a dependency to your app module's `build.gradle`:
 ```
 dependencies {
   // Only if using MoPub mediation
-  implementation "io.liftoff:liftoffads-mopub:1.1.1"
+  implementation "io.liftoff:liftoffads-mopub:1.2.0"
   // Only if using custom mediation
-  implementation "io.liftoff:liftoffads:1.1.1"
+  implementation "io.liftoff:liftoffads:1.2.1"
 }
 ```
 
