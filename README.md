@@ -288,7 +288,7 @@ class Activity :
 
     // To instead display the interstitial at an appropriate time as determined
     // by your app UX:
-    // if this.loInterstitial.ready {
+    // if (this.loInterstitial.ready) {
     //   this.loInterstitial.showAd()
     // }
   }
