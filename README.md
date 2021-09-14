@@ -370,7 +370,9 @@ consent information to our SDK. The following code samples can be used as
 reference:
 
 ```kotlin
+LOPrivacySettings.gdprApplicable = true
 LOPrivacySettings.hasUserConsent = true
+LOPrivacySettings.isAgeRestrictedUser = true
 ```
 
 #### Test Ad Units
