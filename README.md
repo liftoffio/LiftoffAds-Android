@@ -26,6 +26,7 @@ For any other questions, please email sdk@liftoff.io.
   - [Creating a MoPub Custom SDK Network](#creating-a-mopub-custom-sdk-network)
 - [COPPA](#coppa)
 - [Troubleshooting](#troubleshooting)
+  - [Debugging failures](#debugging-failures)
 - [Reporting](#reporting)
 
 ## Overview
@@ -456,6 +457,30 @@ Common integration issues:
   typos in your API key.
 - `"Unable to fetch ad unit: <PROVIDED_AD_UNIT_ID>"`: Could not fill ad request.
   Check ad unit ID for typos.
+
+### Debugging failures
+
+_Requires v1.3.1+._
+
+You can observe the reason for an ad load failure as a toast message.
+To enable toast messages, turn on debug mode:
+
+```kotlin
+// Turn on the debug mode via MoPub configuration.
+with(sdkConfig) {
+  // ...
+  withMediatedNetworkConfiguration(
+    LiftoffAdapterConfiguration::class.java.name,
+    mapOf(
+      "apiKey" to LIFTOFF_API_KEY, 
+      "debug" to "true" // <--
+    )
+  )
+}
+
+// Or set the field directly if you use a self-mediated setup.
+Liftoff.setDebug(true)
+```
 
 ## Reporting
 
